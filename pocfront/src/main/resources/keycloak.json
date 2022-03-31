@@ -1,0 +1,7 @@
+{
+  "realm": "SpringBootKeycloak",
+  "auth-server-url" : "http://localhost:8080/auth",
+  "resource" : "login-app",
+  "username" : "user1",
+  "password" : "xsw2@WSX"
+}
