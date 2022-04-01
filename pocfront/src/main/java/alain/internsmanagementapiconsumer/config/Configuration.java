@@ -1,4 +1,4 @@
-package alain.internsmanagementapiconsumer.client;
+package alain.internsmanagementapiconsumer.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

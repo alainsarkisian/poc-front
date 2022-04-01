@@ -7,11 +7,9 @@ import lombok.RequiredArgsConstructor;
 import net.javacrumbs.shedlock.core.SchedulerLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
 
 @Component
 @EnableScheduling
@@ -21,12 +19,13 @@ public class TaskScheduler {
     private final InternClient internClient;
     private static final Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
 
+
     @Scheduled(fixedRate = 5000L)
     @SchedulerLock(name = "TaskScheduler_scheduledTask",
             lockAtLeastForString = "PT5M", lockAtMostForString = "PT14M")
     public void addAnIntern(){
-        System.out.println("SCHEDULER");
-     /*   Faker faker = new Faker();
+        //System.out.println("SCHEDULER");
+        Faker faker = new Faker();
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
 
@@ -41,6 +40,6 @@ public class TaskScheduler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //return result;*/
+        //return result;
     }
 }

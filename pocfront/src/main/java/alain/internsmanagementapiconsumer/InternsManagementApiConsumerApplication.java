@@ -1,33 +1,29 @@
 package alain.internsmanagementapiconsumer;
 
 import alain.internsmanagementapiconsumer.client.InternClient;
-import alain.internsmanagementapiconsumer.config.ShedLocConfiguration;
 import alain.internsmanagementapiconsumer.scheduler.TaskScheduler;
 import com.alain.dto.json.Intern;
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
-import net.javacrumbs.shedlock.core.LockProvider;
 import net.javacrumbs.shedlock.core.SchedulerLock;
-import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
-
 @EnableScheduling
 @EnableSchedulerLock(defaultLockAtMostFor = "PT30S")
 @EnableFeignClients
-@SpringBootApplication
+/*@ComponentScan(basePackages = {"alain.internsmanagementapiconsumer.scheduler","alain.internsmanagementapiconsumer.config"},
+basePackageClasses = {TaskScheduler.class})*/
+@SpringBootApplication(scanBasePackages={"alain.internsmanagementapiconsumer.scheduler","alain.internsmanagementapiconsumer.config"})
 public class InternsManagementApiConsumerApplication {
 
     public static void main(String[] args) {
@@ -45,6 +41,7 @@ public class InternsManagementApiConsumerApplication {
         @SchedulerLock(name = "TaskScheduler_scheduledTask",
                 lockAtLeastForString = "PT5S", lockAtMostForString = "PT1M")
         public void addAnIntern(){
+            //System.out.println("GO");
             Faker faker = new Faker();
             String firstName = faker.name().firstName();
             String lastName = faker.name().lastName();

@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableScheduling
-public class ShedLocConfiguration {
+public class ShedLockConfiguration {
     @Bean
     public LockProvider lockProvider(DataSource dataSource) {
         return new JdbcTemplateLockProvider(dataSource);
