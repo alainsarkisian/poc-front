@@ -19,16 +19,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @EnableScheduling
-@EnableSchedulerLock(defaultLockAtMostFor = "PT30S")
+//@EnableSchedulerLock(defaultLockAtMostFor = "PT30S")
 @EnableFeignClients
 /*@ComponentScan(basePackages = {"alain.internsmanagementapiconsumer.scheduler","alain.internsmanagementapiconsumer.config"},
 basePackageClasses = {TaskScheduler.class})*/
-@SpringBootApplication(scanBasePackages={"alain.internsmanagementapiconsumer.scheduler","alain.internsmanagementapiconsumer.config"})
+@SpringBootApplication
 public class InternsManagementApiConsumerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(InternsManagementApiConsumerApplication.class, args);
     }
+
     @Component
     @EnableScheduling
     @RequiredArgsConstructor

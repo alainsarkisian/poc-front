@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-@EnableScheduling
+//@EnableScheduling
 @RequiredArgsConstructor
 public class TaskScheduler {
 
@@ -20,9 +20,9 @@ public class TaskScheduler {
     private static final Logger logger = LoggerFactory.getLogger(TaskScheduler.class);
 
 
-    @Scheduled(fixedRate = 5000L)
-    @SchedulerLock(name = "TaskScheduler_scheduledTask",
-            lockAtLeastForString = "PT5M", lockAtMostForString = "PT14M")
+    @Scheduled(cron = "0/15 * * * * *")
+/*    @SchedulerLock(name = "TaskScheduler_scheduledTask",
+            lockAtLeastForString = "PT5S", lockAtMostForString = "PT30S")*/
     public void addAnIntern(){
         //System.out.println("SCHEDULER");
         Faker faker = new Faker();
@@ -36,7 +36,7 @@ public class TaskScheduler {
         try {
             result = this.internClient.addAnIntern(internGenerated);
             logger.info(result);
-            System.out.println("SCHEDULER LAUNCHED");
+            //System.out.println("SCHEDULER LAUNCHED");
         } catch (Exception e) {
             e.printStackTrace();
         }

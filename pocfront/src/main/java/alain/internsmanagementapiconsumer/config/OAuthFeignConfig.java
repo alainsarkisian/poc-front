@@ -32,4 +32,6 @@ public class OAuthFeignConfig {
             requestTemplate.header("Authorization", "Bearer " + keycloak.tokenManager().getAccessToken().getToken());
         };
     }
+
+
 }

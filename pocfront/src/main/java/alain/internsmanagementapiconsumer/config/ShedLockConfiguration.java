@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableScheduling
 public class ShedLockConfiguration {
     @Bean
     public LockProvider lockProvider(DataSource dataSource) {
